@@ -1,9 +1,9 @@
-package login
+package game
 
-import "leaf_game/login/internal"
+import "server/game/internal"
 
 var (
-	// 实例化模块
+	// Module 实例化模块game
 	Module = new(internal.Module)
 	// 暴露 ChanRPC
 	ChanRPC = internal.ChanRPC
