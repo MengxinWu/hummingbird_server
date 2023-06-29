@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"server/game"
@@ -14,7 +15,7 @@ import (
 func main() {
 	lconf.LogLevel = "debug"
 	lconf.LogFlag = log.LstdFlags
-
+	fmt.Println("start")
 	leaf.Run(
 		game.Module,
 		gate.Module,
