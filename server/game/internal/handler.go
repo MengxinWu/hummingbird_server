@@ -3,6 +3,7 @@ package internal
 import (
 	"fmt"
 	"reflect"
+	"sync/atomic"
 
 	"server/msg"
 
@@ -28,7 +29,9 @@ func handleHello(args []interface{}) {
 	fmt.Println("hello")
 	log.Debug("hello %v", m.Name)
 	// 给发送者回应Test消息
+	atomic.AddInt32(&msg.Num, 1)
 	a.WriteMsg(&msg.Hello{
 		Name: "client",
+		Num:  msg.Num,
 	})
 }
