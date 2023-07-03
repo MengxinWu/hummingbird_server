@@ -11,3 +11,13 @@ services:
         main_path: "server"
     ports:
       - "53563:3563"
+  admin:
+    restart: "always"
+    container_name: "admin"
+    build:
+      context: "./"
+      dockerfile: "admin.Dockerfile"
+      args:
+        main_path: "admin"
+    ports:
+      - "58888:8888"
