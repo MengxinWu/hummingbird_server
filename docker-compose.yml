@@ -1,23 +1,41 @@
 version: "3"
 
 services:
+  mysql:
+    restart: "always"
+    container_name: "mysql"
+    build:
+      context: "./"
+      dockerfile: "dockers/mysql.Dockerfile"
+    ports:
+      - "53306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+
   server:
     restart: "always"
     container_name: "server"
     build:
       context: "./"
-      dockerfile: "server.Dockerfile"
+      dockerfile: "dockers/server.Dockerfile"
       args:
         main_path: "server"
     ports:
       - "53563:3563"
+
   admin:
     restart: "always"
     container_name: "admin"
     build:
       context: "./"
-      dockerfile: "admin.Dockerfile"
+      dockerfile: "dockers/admin.Dockerfile"
       args:
         main_path: "admin"
     ports:
       - "58888:8888"
+
+volumes:
+  mysql_data:
