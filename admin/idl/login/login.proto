@@ -1,0 +1,24 @@
+// idl/login/login.proto
+syntax = "proto3";
+
+package login;
+
+option go_package = "admin/login";
+
+import "api.proto";
+
+message LoginReq {
+  string Name = 1[(api.raw_body)="name"];
+  string Passwd = 2[(api.raw_body)="passwd"];
+}
+
+message LoginResp {
+  int64 ID = 1;
+}
+
+
+service HelloService {
+  rpc Login(LoginReq) returns(LoginResp) {
+    option (api.post) = "/login";
+  }
+}
